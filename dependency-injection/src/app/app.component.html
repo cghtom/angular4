@@ -1,0 +1,14 @@
+<h1>
+  {{title}}
+
+  <div *ngFor="let product of products" class="ui info message">
+    <div class="field">
+      <label>basePrice : </label>
+      <span>{{product.basePrice}}</span>
+    </div>
+    <div class="field">
+      <label>totalPrice : </label>
+      <span>{{product.totalPrice('FL')}}</span>
+    </div>
+  </div>
+</h1>

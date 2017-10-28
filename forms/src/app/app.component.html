@@ -22,13 +22,38 @@
   <h2 class="ui header">Demo Form: Sku</h2>
   <form [formGroup]="myForm"
   (ngSubmit)="onSubmit(myForm.value)"
-  class="ui form">
-    <div class="field">
+  class="ui form"
+  [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+
+    <div class="field"
+      [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
       <label for="skuInput">SKU</label>
       <input type="text" id="skuInput"
             placeholder="SKU"
             [formControl]="myForm.controls['sku']">
     </div>
-    <button type="submit" class="ui button">Submit</button>
+
+    <div *ngIf="myForm.controls['sku'].hasError('mustStartWith123')" class="ui error message">
+      field sku must start with 123
+    </div>
+    <div *ngIf="myForm.controls['sku'].hasError('required')" class="ui error message">
+      field sku is required!!
+    </div>
+    <div *ngIf="!myForm.controls['sku'].valid" class="ui error message">
+      field sku is not valid
+    </div>
+
+    <div class="field">
+      <label for="productNameInput"></label>
+      <input type="text" placeholder="productName" id="productNameInput"
+        [formControl]="myForm.controls['productName']"
+        [(ngModel)] = "productName">
+    </div>
+    <div class="ui info message">
+      The product name is: {{productName}}
+    </div>
+
+
+    <button type="submit" class="ui button" [disabled]="!myForm.valid">Submit</button>
   </form>
 </div>

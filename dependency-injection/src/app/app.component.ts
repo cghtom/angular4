@@ -1,7 +1,8 @@
 import { Component , ReflectiveInjector, Inject} from '@angular/core';
 import { Product } from './model/product.model';
 import { PriceServiceRandom } from './services/price-service-random';
-import { PriceServiceFixed } from './services/price-service-fixed';
+import { PriceServiceFixed21 } from './services/price-service-fixed21';
+import { IPriceService } from './services/price-service.interface';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +20,10 @@ export class AppComponent {
   * we are using private ... it is set as a member property (this.property)
   * and can be used in html template
   */
-  constructor(service2 : PriceServiceFixed, @Inject('TITLE')private title){
+  constructor(service21 : PriceServiceFixed21, @Inject('priceService6') priceService6: IPriceService ,@Inject('TITLE')private title){
     let injector:any = ReflectiveInjector.resolveAndCreate([PriceServiceRandom]);
-    let service :PriceServiceRandom = injector.get(PriceServiceRandom);
+    let serviceRandom :PriceServiceRandom = injector.get(PriceServiceRandom);
 
-    this.products= [new Product(service,100), new Product(service2,200)];
+    this.products= [new Product(serviceRandom,100), new Product(service21,200), new Product(priceService6,200)];
   }
 }

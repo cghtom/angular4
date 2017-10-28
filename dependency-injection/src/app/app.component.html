@@ -1,14 +1,15 @@
 <h1>
-  {{title}}
-
-  <div *ngFor="let product of products" class="ui info message">
-    <div class="field">
-      <label>basePrice : </label>
-      <span>{{product.basePrice}}</span>
-    </div>
-    <div class="field">
-      <label>totalPrice : </label>
-      <span>{{product.totalPrice('FL')}}</span>
+  <div class="ui segment">
+    <div class="ui large">{{title}}</div>
+    <div *ngFor="let product of products" class="ui segments">
+      <div class="ui segment">
+        <label>basePrice : </label>
+        <span>{{product.basePrice}}</span>
+      </div>
+      <div class="ui segment secondary">
+        <label>totalPrice : </label>
+        <span>{{product.totalPrice('FL')}}</span>
+      </div>
     </div>
   </div>
 </h1>

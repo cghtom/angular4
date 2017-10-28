@@ -1,0 +1,39 @@
+<h1>
+  {{title}}
+
+  <h1>ngIf</h1>
+
+  <div *ngIf="false"> never visible</div>
+  <div *ngIf="a>b"> a > b : {{a}} > {{b}}</div>
+  <div *ngIf="str == 'yes'"> {{str}} == 'yes'</div>
+  <div *ngIf="checkIfVisible()">isVisible...</div>
+
+
+
+  <h1>ngStyle</h1>
+
+  <div class="ui input">
+    <input type="text" name="color" value="{{color}}" #colorinput>
+  </div>
+  <div class="ui input">
+    <input type="text" name="fontSize" value="{{fontSize}}" #fontinput>
+  </div>
+  <button class="ui primary button" (click)="apply(colorinput.value, fontinput.value)">
+    Apply settings
+  </button>
+
+  <div>
+    <span [ngStyle]="{color: color}" [style.font-size.px]="fontSize">
+    red text
+    </span>
+  </div>
+
+
+
+  <h1>ngClass</h1>
+
+  <div [ngClass]="{bordered: false}">This is never bordered</div>
+  <div [ngClass]="{bordered:true}">This is always bordered</div>
+  <div [ngClass]="{bordered: isBordered}" (click)="toggleBorder()">
+    Using object literal. Border {{ isBordered ? "ON" : "OFF" }}
+  </div>

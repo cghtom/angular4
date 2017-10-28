@@ -1,0 +1,15 @@
+<div (click)="makeRequest()" class="ui animated button" tabindex="0">
+  <div class="visible content">Make a simple request</div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+<div class="ui info message" *ngIf="response" id="response">
+  {{response | json}}
+</div>
+<div class="ui error message" *ngIf="error" id="error">
+  {{error | json}}
+</div>
+<div class="ui info message" *ngIf="loading" id="loading">
+  loading...
+</div>

@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
+
+<div class="page-header">
+  <h1>{{title}}
+    <img style="float: right;"
+      *ngIf="loading"
+       src='assets/images/loading.gif' />
 </h1>
+</div>
+
+<div class="row" id="search">
+  <app-search-box
+    (loading)="loading = $event"
+    (results)="updateSearchResults($event)">
+  </app-search-box>
+</div>
+
+<div class="row" id="results">
+  <app-search-result
+    *ngFor="let result of searchResults"
+    [result]="result"></app-search-result>
+</div>

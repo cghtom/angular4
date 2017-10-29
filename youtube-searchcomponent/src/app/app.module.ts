@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SearchService } from './services/search-service';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { YoutubeApiConstants } from './youtube-api-constants';
 
 
 @NgModule({
@@ -22,8 +23,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
   ],
   providers: [
     SearchService,
-    {provide : 'YOUTUBE_API_KEY', useValue: ' AIzaSyAcYdRc5VuZJPoIzA0uE4BhJcdaCoX6mHU'},
-    {provide : 'YOUTUBE_API_URL', useValue: 'https://www.googleapis.com/youtube/v3/search'}
+    YoutubeApiConstants
   ],
   bootstrap: [AppComponent]
 })

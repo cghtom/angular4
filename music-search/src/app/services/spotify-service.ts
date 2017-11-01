@@ -21,32 +21,56 @@ The redirect_uri must be registered as valid redirect_uri for your app/client_id
 Then open webPage and click url, it will redirect you to login and then to redirect_uri with access_token as queryString parameter::
 
 You get redirected to :
-http://d51a58c6b.access.telenet.be/angular/getToken.html#access_token=BQBnMEa3MmNMFYMkqIbxUQn7S4relbJtXpYPCs95naEEKcf_kTDwyAYNvdy-TXHJb5FD65AItZKJsvOYTqgfnLysw9n1UGXm-icJCObhKNnzcOf4_-GTkzrN2Dn-1g433Qx1N5QOW8W3LGL-UsGgW25gNo47&token_type=Bearer&expires_in=3600&state=123
+http://d51a58c6b.access.telenet.be/angular/getToken.html#access_token=BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1&token_type=Bearer&expires_in=3600&state=123
 --> get access_token from the  queryString...
 
 
 Then use the token and test:
-curl -X GET "https://api.spotify.com/v1/search?q=tania%20bowra&type=track" -H "Authorization: Bearer BQBnMEa3MmNMFYMkqIbxUQn7S4relbJtXpYPCs95naEEKcf_kTDwyAYNvdy-TXHJb5FD65AItZKJsvOYTqgfnLysw9n1UGXm-icJCObhKNnzcOf4_-GTkzrN2Dn-1g433Qx1N5QOW8W3LGL-UsGgW25gNo47"
+curl -X GET "https://api.spotify.com/v1/search?q=tania%20bowra&type=track" -H "Authorization: Bearer BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1"
 */
 
 @Injectable()
 export class SpotifyService{
 
-  accessToken:string="BQBnMEa3MmNMFYMkqIbxUQn7S4relbJtXpYPCs95naEEKcf_kTDwyAYNvdy-TXHJb5FD65AItZKJsvOYTqgfnLysw9n1UGXm-icJCObhKNnzcOf4_-GTkzrN2Dn-1g433Qx1N5QOW8W3LGL-UsGgW25gNo47";
+  baseURL:string="https://api.spotify.com/v1/"
+  accessToken:string="BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1";
 
   constructor(private http:Http){}
+
+  getTrack(trackId:string): Observable<any>{
+    return this.callSpotifyGetApi(trackId, "tracks");
+  }
+
+  getAlbum(albumId : string): Observable<any>{
+    return this.callSpotifyGetApi(albumId, "albums");
+  }
+
+  getArtist(artistId : string): Observable<any>{
+    return this.callSpotifyGetApi(artistId, "artists");
+  }
 
   searchTrack(qry : string): Observable<any>{
     let qryParams = [
       'q='+qry,
       'type=track'].join('&');
+    return this.callSpotifySearchApi(qryParams);
+  }
 
+  callSpotifyGetApi(id:string, type:string): Observable<any>{
+    let getURL:string = this.baseURL+type+"/"+id;
+    return this.http.request(getURL, this.construcHeaderWithAuthorization())
+      .map(res => res.json(), err=>console.log("error:",err)); // converst responsejsonstring to Object
+  }
+
+  callSpotifySearchApi(qryParams:string): Observable<any>{
+    return this.http.request(this.baseURL+"search?"+qryParams, this.construcHeaderWithAuthorization())
+      .map(res => res.json(), err=>console.log("error:",err)); // converst responsejsonstring to Object
+  }
+
+  construcHeaderWithAuthorization(): RequestOptions{
     const headers = new Headers({
       'Authorization': `Bearer ${this.accessToken}`
     });
-    const options = new RequestOptions({ headers: headers});
-
-    return this.http.request("https://api.spotify.com/v1/search?"+qryParams, options)
-      .map(res => res.json(), err=>console.log("error:",err)); // converst responsejsonstring to Object
+    return new RequestOptions({ headers: headers});
   }
 }

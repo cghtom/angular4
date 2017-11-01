@@ -12,23 +12,34 @@ import { AlbumComponent } from './album/album.component';
 import { TrackComponent } from './track/track.component';
 
 import { SpotifyService } from './services/spotify-service';
+import { SearchComponent } from './search/search.component';
 
+const routes:Routes = [
+  {path : '', redirectTo : 'search', pathMatch : 'full'},
+  {path : 'search', component : SearchComponent}
+  // {path : 'about', component : AboutComponent},
+  // {path : 'contact', component : ContactComponent},
+  // {path : 'contactus', redirectTo : 'contact'}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistComponent,
     AlbumComponent,
-    TrackComponent
+    TrackComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes/*, { enableTracing: true }*/)
   ],
   providers: [
     {provide : APP_BASE_HREF, useValue : '/'},
-    {provide : LocationStrategy, useClass : HashLocationStrategy}
+    {provide : LocationStrategy, useClass : HashLocationStrategy},
+    {provide : SpotifyService, useClass : SpotifyService}
   ],
   bootstrap: [AppComponent]
 })

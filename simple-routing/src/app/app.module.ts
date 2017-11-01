@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { ProductComponent } from './product/product.component';
 
 const routes:Routes = [
   {path : '', redirectTo : 'home', pathMatch : 'full'},
@@ -26,14 +25,13 @@ const routes:Routes = [
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent,
-    ProductComponent
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes/*, { enableTracing: true }*/)
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }, // by default angular4 uses html5 shizzle that is not supported by all browsers yet ... hashlocationstrategy always works...

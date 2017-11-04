@@ -17,10 +17,9 @@ import { SearchComponent } from './search/search.component';
 const routes:Routes = [
   {path : '', redirectTo : 'search', pathMatch : 'full'},
   {path : 'search', component : SearchComponent},
-  {path : 'tracks/:id', component : TrackComponent }
-  // {path : 'about', component : AboutComponent},
-  // {path : 'contact', component : ContactComponent},
-  // {path : 'contactus', redirectTo : 'contact'}
+  {path : 'tracks/:id', component : TrackComponent },
+  {path : 'artists/:id', component : ArtistComponent},
+  {path : 'albums/:id', component : AlbumComponent}
 ];
 
 @NgModule({

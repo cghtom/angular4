@@ -1,3 +1,17 @@
-<p>
-  album works!
-</p>
+<div *ngIf="album">
+  <h1>{{ album.name }}</h1>
+  <p>
+    <img src="{{ album.images[1].url }}">
+  </p>
+
+  <h3>Tracks:</h3>
+    <ol>
+      <li *ngFor="let track of album.tracks.items">{{track.name}}
+    </ol>
+
+
+
+  <p>
+      <a href (click)="back()">Back</a>
+  </p>
+</div>

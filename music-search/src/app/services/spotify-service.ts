@@ -17,23 +17,25 @@ Make simple webpage with one link to authorization service of spotify;
     get an access token
   </a>
 
+
+
 The redirect_uri must be registered as valid redirect_uri for your app/client_id
 Then open webPage and click url, it will redirect you to login and then to redirect_uri with access_token as queryString parameter::
 
 You get redirected to :
-http://d51a58c6b.access.telenet.be/angular/getToken.html#access_token=BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1&token_type=Bearer&expires_in=3600&state=123
+http://d51a58c6b.access.telenet.be/angular/getToken.html#access_token=BQDW9aAngR5Dd92vm8n_CDFgECWLFXyhBKA1kBlge_xxTyQtqQS6h6QQlMbLcy4KZFowK9cDDJTm46gS7MGSPQ2nD0l2Q8_cs--kd4WowKYyDNZtnss0VIzb9lwMyJj3B89Z1Wf8_zWICHvj-otLHMmYk9nL&token_type=Bearer&expires_in=3600&state=123
 --> get access_token from the  queryString...
 
 
 Then use the token and test:
-curl -X GET "https://api.spotify.com/v1/search?q=tania%20bowra&type=track" -H "Authorization: Bearer BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1"
+curl -X GET "https://api.spotify.com/v1/search?q=tania%20bowra&type=artist" -H "Authorization: Bearer BQDW9aAngR5Dd92vm8n_CDFgECWLFXyhBKA1kBlge_xxTyQtqQS6h6QQlMbLcy4KZFowK9cDDJTm46gS7MGSPQ2nD0l2Q8_cs--kd4WowKYyDNZtnss0VIzb9lwMyJj3B89Z1Wf8_zWICHvj-otLHMmYk9nL"
 */
 
 @Injectable()
 export class SpotifyService{
 
   baseURL:string="https://api.spotify.com/v1/"
-  accessToken:string="BQDllBOZNPZfVubVcNYjN-NqZAxopTAPFIxIYdBECY_hvBRNCR4X7l0cqAugnudOHDBhIlCEmtAjbwz4jgMlkFDRCPBzWrdHPkV4N9eJHuBOeUPbPGEDCHQvWJpQn2WNd8dNFwnzvLRwldEPzBhkemH-Nug1";
+  accessToken:string="BQDW9aAngR5Dd92vm8n_CDFgECWLFXyhBKA1kBlge_xxTyQtqQS6h6QQlMbLcy4KZFowK9cDDJTm46gS7MGSPQ2nD0l2Q8_cs--kd4WowKYyDNZtnss0VIzb9lwMyJj3B89Z1Wf8_zWICHvj-otLHMmYk9nL";
 
   constructor(private http:Http){}
 

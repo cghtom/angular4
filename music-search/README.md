@@ -26,3 +26,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## For this specific excample:
+look in the spotify-service.ts to find instructions to obtain the spotify access_token.
+then set it in the member variable..
+Problems with redirect because using hashbang routing strategy and sending fragments in
+redirect_uris seems not to work...

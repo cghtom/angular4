@@ -20,7 +20,11 @@ const routes:Routes = [
   {path : 'contact', component : ContactComponent},
   {path : 'contactus', redirectTo : 'contact'},
   // nested:
-  {path : 'products', component : ProductsComponent, children: childRoutes}
+  {
+  path: 'products',
+  component: ProductsComponent,
+  children: childRoutes
+  }
 ];
 
 
@@ -29,8 +33,7 @@ const routes:Routes = [
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent,
-    ProductsComponent
+    ContactComponent
   ],
   imports: [
     BrowserModule,

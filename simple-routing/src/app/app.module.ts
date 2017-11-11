@@ -4,19 +4,23 @@ import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, Router, RouterModule } from '@angular/router';
+import { childRoutes, ProductsModule } from './products/products.module';
 
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProductsComponent } from './products/products.component';
 
 const routes:Routes = [
   {path : '', redirectTo : 'home', pathMatch : 'full'},
   {path : 'home', component : HomeComponent},
   {path : 'about', component : AboutComponent},
   {path : 'contact', component : ContactComponent},
-  {path : 'contactus', redirectTo : 'contact'}
+  {path : 'contactus', redirectTo : 'contact'},
+  // nested:
+  {path : 'products', component : ProductsComponent, children: childRoutes}
 ];
 
 
@@ -25,12 +29,14 @@ const routes:Routes = [
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    ProductsModule,
     RouterModule.forRoot(routes/*, { enableTracing: true }*/)
   ],
   providers: [

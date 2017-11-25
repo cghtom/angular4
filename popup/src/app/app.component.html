@@ -2,7 +2,7 @@
   {{title}}
 </h1>
 
-<div class="ui message" popup msg="Clicked the message!">
+<div class="ui message" popup #popup1="popup" msg="Clicked the message!">
   <div class="header">
     Fun with directives
   </div>
@@ -12,4 +12,13 @@
   </p>
 </div>
 
-<i class="alarm icon" popup msg="Clicked the alarm bell"></i>
+<i class="alarm icon" popup #popup2="popup" msg="Clicked the alarm bell"></i>
+
+<div>
+  <button (click)="popup1.displayMsg()" class="ui button">
+    Display popup for message element
+  </button>
+  <button (click)="popup2.displayMsg()" class="ui button">
+    Display popup for alarm icon
+  </button>
+</div>

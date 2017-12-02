@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ContentTabComponentComponent } from './content-tab-component/content-tab-component.component';
+import { ContentTabsetComponentComponent } from './content-tabset-component/content-tabset-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContentTabComponentComponent,
+    ContentTabsetComponentComponent
   ],
   imports: [
     BrowserModule,

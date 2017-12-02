@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PopupDirective } from './popup.directive';
+import { ContentProjectionComponent } from './content-projection/content-projection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopupDirective
+    PopupDirective,
+    ContentProjectionComponent
   ],
   imports: [
     BrowserModule,

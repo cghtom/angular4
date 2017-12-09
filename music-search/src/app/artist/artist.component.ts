@@ -18,7 +18,8 @@ export class ArtistComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
         this.id = params.get('id');
         if(this.id){
-          this.spotifyService.getArtist(this.id).subscribe(res => this.renderArtist(res));
+          this.spotifyService.getArtist(this.id).subscribe(
+            res => this.renderArtist(res));
         }
       }
     );

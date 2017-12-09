@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
           this.message = '';
         }.bind(this), 2500)
       }
-      return false; // wtf??
+      return false; // wtf (dont want click event to bubble ...)??
   }
 
   logout():boolean{
     this.authService.logout();
-    return false; //wtf??
+    return false; //wt (don't want click event tot bubble up...) f??
   }
 
   ngOnInit() {

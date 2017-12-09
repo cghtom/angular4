@@ -71,4 +71,34 @@ describe('ArtistComponent', () => {
       })
     ));
   });
+
+  describe('rendering of DOM',()=>{
+    it('render artist info', fakeAsync(
+      inject([Router, SpotifyService], (router:Router, mockSpotifyService: MockSpotifyService)=>{
+        const fixture = createRoot(router, RootCmp);
+
+        const artist = {
+          name : "Jim Morrison",
+          images : [{url: 'someImageUrl'}, {url: 'thumbNailImageUrl'}],
+          followers : 5
+        };
+        mockSpotifyService.setResponse(artist);
+
+        router.navigateByUrl('/artists/3');
+        advance(fixture);
+
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('h1').innerHTML).toContain("Jim Morrison");
+    })));
+  })
+
+  //template for test:
+  /*
+  describe('',()=>{
+    it('', fakeAsync(inject([], ()=>{
+
+    })));
+  })
+  */
+
 });

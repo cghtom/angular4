@@ -43,7 +43,6 @@ export class MessageService {
     .publishReplay(1)
     .refCount();
 
-
     // 2. when create --> send to "updates"
     this.create.map(
       function(message: Message): IMessagesOperation {
@@ -77,6 +76,10 @@ export class MessageService {
 
   addMessage(msg:Message):void{
     this.newMsg.next(msg);
+  }
+
+  markAsRead(thread:Thread):void{
+    this.markThreadAsRead.next(thread);
   }
 
   msgsForThreadAndUser(thread:Thread, user:User) : Observable<Message>{

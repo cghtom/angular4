@@ -63,21 +63,26 @@ describe('MessageService', () => {
     service.newMsg.subscribe((theMsg:Message) => {
       console.log("newMsg : ", theMsg);
     });
-    service.msgs.subscribe((msgs:Message[]) => {
-      console.log("msgs : ", msgs);
+    service.create.subscribe((any) => {
+      console.log("creates : ", any);
+    });
+    service.markThreadAsRead.subscribe((any) => {
+      console.log("markAsRead : ", any);
     });
     service.updates.subscribe((any) => {
       console.log("updates : ", any);
     });
-    service.create.subscribe((any) => {
-      console.log("creates : ", any);
+    service.msgs.subscribe((msgs:Message[]) => {
+      console.log("msgs : ", msgs);
     });
 
     let msgByTheUser = new Message({thread:theThread, author:theUser});
     service.addMessage(msgByTheUser);
 
     let msgonTheOtherThread = new Message({thread:theOtherThread, author:theOtherUser});
-     service.addMessage(msgonTheOtherThread);    
+    service.addMessage(msgonTheOtherThread);
+
+    service.markAsRead(theThread);
     //
     // let msgByTheOtherUser = new Message({thread:theThread, author:theOtherUser});
     // service.addMessage(msgByTheOtherUser);

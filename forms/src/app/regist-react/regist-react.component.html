@@ -2,14 +2,23 @@
 <div>
     <!-- ngNoForm -->
   <form [formGroup]="formModel" (submit)="onSubmit()">
-    <div>账号：<input formControlName="userName" type="text" name="account" required/></div>
-    <div>手机号：<input formControlName="mobile" type="text" name="mobile" required/></div>
-    <div formGroupName="passwordsGroup">
+    <div>账号：<input formControlName="userName" type="text" name="userName" /></div>
+    <div [hidden]="!formModel.hasError('userName','userName')">
+        {{formModel.getError('userName','userName')}}
+    </div>
+    <div>手机号：<input formControlName="mobile" type="text" name="mobile" /></div>
+    <div formGroupName="passwordsGroup" equalPwd>
         <div>密码：<input type="password" name="password" formControlName="passwd"/></div>
         <div>确认密码：<input type="password" name="pwdConfirm" formControlName="pwdConfirm"/></div>
+    </div>
+    <div [hidden]="!formModel.hasError('aaa','passwordsGroup')">
+        {{formModel.getError('aaa','passwordsGroup')?.eee}}
     </div>
     <div>邮政编码：<input name="code" type="number" max="6" min=4></div>
     <input type="submit" value="提交">
   </form>
   <div>{{formModel.value|json}}</div>
+  <div>
+      {{formModel.status}}
+  </div>
 </div>

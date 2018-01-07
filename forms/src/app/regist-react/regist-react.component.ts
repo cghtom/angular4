@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
-
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { userNameValidator, equalValidator, userNameAsyncValidator } from '../validation/validators';
 @Component({
   selector: 'app-regist-react',
   templateUrl: './regist-react.component.html',
@@ -18,19 +18,26 @@ export class RegistReactComponent implements OnInit {
   //     })
   //   });
   //  }
+ 
   constructor(fb: FormBuilder){
     this.formModel = fb.group({
-      userName : [''],
+      userName : ['',[userNameAsyncValidator]],
           mobile : [''],
           passwordsGroup : fb.group({
             passwd : [''],
             pwdConfirm : ['']
           })
+          // },{validator:equalValidator})
     });
   }
   ngOnInit() {
   }
   onSubmit(){
-    console.log(this.formModel.value);
+    let isValid: boolean = this.formModel.get("userName").valid;
+    let errorUserName: any = this.formModel.get("userName").errors;
+    // console.log("userName的校验："+isValid+"；提示消息是："+JSON.stringify(errorUserName))
+    if(this.formModel.valid){
+      console.log(this.formModel.value);
+    }
   }
 }

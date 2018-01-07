@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SimpleFormComponent } from './simple-form/simple-form.component';
 import { DateFormComponent } from './date-form/date-form.component';
+import { RegistReactComponent } from './regist-react/regist-react.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SimpleFormComponent,
-    DateFormComponent
+    DateFormComponent,
+    RegistReactComponent
   ],
   imports: [
     BrowserModule,

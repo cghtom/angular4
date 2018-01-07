@@ -1,3 +1,20 @@
-<p>
-  date-form works!
-</p>
+<form [formGroup]="formModel" (submit)="onSubmit()">
+  <div>
+    <input type="text" formControlName="userName"/>
+  </div>
+  <div formGroupName='dateRange'>
+    起始日期：<input type="date" formControlName="from"/>
+    截至日期：<input type="date" formControlName="to"/>
+  </div>
+  <div>
+    <ul formArrayName="emails">
+      <li *ngFor="let e of this.formModel.get('emails').controls;let i=index;">
+        <input type ="text" [formControlName]='i'/>
+      </li>
+    </ul>
+    <button tyoe="button" (click)="addEmail()">增加email</button>
+  </div>
+  <div>
+    <button type="submit">提交</button>
+  </div>
+</form>

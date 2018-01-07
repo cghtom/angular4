@@ -1,0 +1,15 @@
+
+<div>
+    <!-- ngNoForm -->
+  <form [formGroup]="formModel" (submit)="onSubmit()">
+    <div>账号：<input formControlName="userName" type="text" name="account" required/></div>
+    <div>手机号：<input formControlName="mobile" type="text" name="mobile" required/></div>
+    <div formGroupName="passwordsGroup">
+        <div>密码：<input type="password" name="password" formControlName="passwd"/></div>
+        <div>确认密码：<input type="password" name="pwdConfirm" formControlName="pwdConfirm"/></div>
+    </div>
+    <div>邮政编码：<input name="code" type="number" max="6" min=4></div>
+    <input type="submit" value="提交">
+  </form>
+  <div>{{formModel.value|json}}</div>
+</div>

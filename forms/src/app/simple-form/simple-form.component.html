@@ -1,3 +1,15 @@
-<p>
-  simple-form works!
-</p>
+
+<div>
+    <!-- ngNoForm -->
+  <form #cgh="ngForm" (ngSubmit)="cghSubmit(cgh.value)">
+    <div>账号：<input ngModel type="text" name="account" required></div>
+    <div>手机号：<input ngModel type="text" name="mobile" required></div>
+    <div ngModelGroup="passwordsGroup">
+        <div>密码：<input ngModel type="password" name="passwd"></div>
+        <div>确认密码：<input ngModel type="password" name="pConfirm"></div>
+    </div>
+    <div>邮政编码：<input ngModel name="code" type="number" max="6" min=4></div>
+    <input type="submit" value="提交">
+  </form>
+  <div>{{cgh.value|json}}</div>
+</div>

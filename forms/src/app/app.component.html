@@ -1,7 +1,7 @@
 
 <!-- form creating adhoc/new FormGroup and formControls. using ngForm and ngModel-->
 <div class="ui raised segment">
-  <h2 class="ui header">Demo Form: Sku</h2>
+  <h2 class="ui header">Demo Form: Sku1</h2>
   <form #f="ngForm"
   (ngSubmit)="onSubmit(f.value)"
   class="ui form">
@@ -13,13 +13,14 @@
     </div>
     <button type="submit" class="ui button">Submit</button>
   </form>
+  <div>{{f.value|json}}</div>
 </div>
 
-
+<app-simple-form></app-simple-form>
 
 <!-- form bound to existing formgroup. using formGroup and formControl-->
 <div class="ui raised segment">
-  <h2 class="ui header">Demo Form: Sku</h2>
+  <h2 class="ui header">Demo Form: Sku2</h2>
   <form [formGroup]="myForm"
   (ngSubmit)="onSubmit(myForm.value)"
   class="ui form"
@@ -27,8 +28,8 @@
 
     <div class="field"
       [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
-      <label for="skuInput">SKU</label>
-      <input type="text" id="skuInput"
+      <label for="skuInput1">SKU</label>
+      <input type="text" id="skuInput1"
             placeholder="SKU"
             [formControl]="myForm.controls['sku']">
     </div>
@@ -56,4 +57,5 @@
 
     <button type="submit" class="ui button" [disabled]="!myForm.valid">Submit</button>
   </form>
+  <div>{{myForm.value|json}}</div>
 </div>

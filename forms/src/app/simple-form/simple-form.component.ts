@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-form',
@@ -11,5 +12,7 @@ export class SimpleFormComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  cghSubmit(value:any) {
+    console.log("value:",value);
+  }
 }

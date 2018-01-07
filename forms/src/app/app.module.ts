@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SimpleFormComponent } from './simple-form/simple-form.component';
+import { DateFormComponent } from './date-form/date-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleFormComponent
+    SimpleFormComponent,
+    DateFormComponent
   ],
   imports: [
     BrowserModule,
